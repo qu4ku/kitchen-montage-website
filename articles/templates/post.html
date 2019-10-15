@@ -1,0 +1,105 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pl">
+
+
+<head>
+	<title>{% if post.seo_title %}{{ post.seo_title }}{% else %}{{ post.title }}{% endif %} - TyrantsThem</title>
+	
+<!-- 	<meta name="description" content="{% if post.seo_description %}{{ post.seo_description }}{% elif post.description %}{{ post.description }}{% else %}Trener Indywidualny Online to plany dietetyczne i treningowe, które pomagają schudnąć, zbudować masę mięśniową.{% endif %}" />
+	<meta name="twitter:title" content="{{ post.title }} - Trener Indywidualny Online">
+	<meta property="og:title" content="{% if post.seo_title %}{{ post.seo_title }} {% else %}{{ post.title }}{% endif %}" />
+	<meta property="og:description" content="{% if post.seo_description %}{{ post.seo_description }}{% elif post.description %}{{ post.description }}{% else %}Trener Indywidualny Online to plany dietetyczne i treningowe, które pomagają schudnąć, zbudować masę mięśniową.{% endif %}" />
+	<meta name="twitter:title" content="{% if post.seo_title %}{{ post.seo_title }}{% else %}{{ post.title }}{% endif %} - Trener Indywidualny Online" />
+	<meta name="twitter:description" content="Trener Indywidualny Online - plany dietetyczne i treningowe, które pomagają schudnąć, zbudować masę mięśniową." />
+	 -->
+	{% include 'includes/head.html' %}
+</head>
+
+<body>
+
+<div class="wrapper wrapper--sub">
+
+	<header class="top top--sub">
+		
+		<div class="top__menu-container">
+
+			<a class="top__logo" href="{% url 'home-pl' %}">
+				<p class="logo-text">TyrantsThem</p>
+			</a>
+			{% include 'includes/menu-pl.html' %}
+			
+		</div>
+		
+	</header>
+
+	<div class="content">
+		<div class="article-container">
+			<div class="article-newsletter-container">
+				<form class="article-newsletter" action="https://formspree.io/trenerindywidualnyonline@gmail.com" method="POST">
+					<p class="article-newsletter-body">Zapisz się do Newslettera - bądź na bierząco.</p>
+					<!-- <p class="article-newsletter-body article-newsletter-body--mobile">Newsletter</p> -->
+
+					<input type="text" id="email_newsletter" name="email_newsletter" placeholder="E-mail" required>
+					
+
+					<!-- <p form-bottom">*Pola wymagane</p> -->
+					<input class="button-article-newsletter" type="submit" value="Subskrybuj">
+					
+				</form>
+			</div>
+			<div class="article-header">
+				<a class="text-link text-link-back" href="{% url 'articles' %}">Wszystkie artykuły</a>
+				{% if prev_post %}
+				<a class="text-link text-link-back" href="{% url 'post' slug=prev_post.slug %}">Poprzedni</a>
+				{% endif %}
+				{% if next_post %}
+				<a class="text-link text-link-back" href="{% url 'post' slug=next_post.slug %}">Następny</a>
+				{% endif %}
+			</div>
+			<div class="article-post">
+				
+					<div class="article-post-data">
+						<div class="article-post-date">{{ post.publish|date:"d.m.Y" }}</div>
+						<div class="article-post-data-social">{% include 'includes/social.html' %}</div>
+						<div class="article-post-data-line"></div>
+					</div>
+					<div class="article-post-content">
+						<a class="article-post-title" href="{{ post.get_absolute_url }}"><h1>{{ post.title }}</h1></a>
+						{% if post.image %}<img class="article-post-image" src="{{ post.image.url }}" alt="">{% endif %}
+
+						<p class="article-post-meat">
+							<div>{{ post.content|safe }}</div>
+						</p>
+						<a class="text-link text-link-post-bottom" href="{% url 'articles' %}">Zobacz wszystkie artykuły</a>
+					</div>
+			</div>
+			
+			<!-- <div class="button-main button-post">Zobacz inne posty!</div>	 -->
+					
+
+		</div>
+
+		{% include 'includes/footer.html' %}
+
+	</div>
+
+	<a class="corrector-button" href="#corrector-overlay-on">Zgłoś błąd w tekście</a>
+	<div class="corrector-overlay" id="corrector-overlay-on">
+		<form class="corrector-form" action="https://formspree.io/trenerindywidualnyonline@gmail.com" method="POST">
+		<input name="mistake" placeholder="Opisz błąd" type="text" autofocus class="search-input" autofocus placeholder="Start typing and press enter.">
+		<input type="hidden" name="page" value="{{ post.title }}">
+		<input class="button-article-newsletter" type="submit" value="Wyślij">
+		</form>
+		<a class="corrector-close" href="#">&times;</a>
+	</div>
+	
+</div>
+
+</div>
+
+	
+</body>
+</html>

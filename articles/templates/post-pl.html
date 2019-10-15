@@ -1,0 +1,144 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pl">
+
+
+<head>
+	{% include 'includes/head-pl.html' %}
+	<title>{% if post.seo_title %}{{ post.seo_title }}{% else %}{{ post.title }}{% endif %} - TyrantsThem</title>
+	<meta name="description" content="{% if post.seo_description %}{{ post.seo_description }}{% elif post.description %}{{ post.description }}{% else %}TyrantsThem - analiza malware, cyberbezpieczeństwo, audyt bezpieczeństwa, pentesting.{% endif %}" />
+	<meta name="twitter:title" content="{{ post.title }} - TyrantsThem">
+	<meta property="og:title" content="{% if post.seo_title %}{{ post.seo_title }} {% else %}{{ post.title }}{% endif %}" />
+	<meta property="og:description" content="{% if post.seo_description %}{{ post.seo_description }}{% elif post.description %}{{ post.description }}{% else %}TyrantsThem - analiza malware, cyberbezpieczeństwo, audyt bezpieczeństwa, pentesting.{% endif %}" />
+	<meta name="twitter:title" content="{% if post.seo_title %}{{ post.seo_title }}{% else %}{{ post.title }}{% endif %} - TyrantsThem" />
+	<meta name="twitter:description" content="TyrantsThem - analiza malware, cyberbezpieczeństwo, audyt bezpieczeństwa, pentesting." />
+
+	<meta property="og:type" content="article" />
+</head>
+
+<body>
+<div class="wrapper wrapper--sub">
+	<header class="top top--articles">
+		<div class="top__menu-container">
+			<a class="top__logo" href="{% url 'home-pl' %}">
+				<p class="logo-text">TyrantsThem</p>
+			</a>
+			{% include 'includes/menu-pl.html' %}
+		</div>
+	</header>
+	<div class="content">
+			<div class="article-post-links">
+				<div>
+				<a class="text-link text-link-back" href="{% url 'articles-pl' %}">Wszystkie artykuły</a>
+				{% if prev_post %}
+				<a class="text-link text-link-back" href="{% url 'post-pl' slug=prev_post.slug %}">Poprzedni</a>
+				{% endif %}
+				{% if next_post %}
+				<a class="text-link text-link-back" href="{% url 'post-pl' slug=next_post.slug %}">Następny</a>
+				{% endif %}
+				</div>
+			</div>
+			<div class="article-post">
+					<div class="article-post-data">
+						{% if render_date %}
+						<div class="article-post-date">{{ post.publish|date:"d.m.Y" }}</div>
+						{% else %}
+						<style type="text/css">
+							.post__info__social {transform: translateY(+10px);}
+						</style>
+						{% endif %}
+						<div class="article-post-data-social">{% include 'includes/social.html' %}</div>
+						<div class="article-post-data-line"></div>
+					</div>
+					<div class="article-post-content">
+						<h1 class="article-post-title">{{ post.title }}</h1>
+						{% if post.image %}<img class="article-post-image" src="{{ post.image.url }}" alt="">{% endif %}
+						<p class="article-post-meat">
+							<div>{{ post.content|safe }}</div>
+						</p>
+						<div class="break-line"></div>
+						<a class="text-link text-link-post-bottom" href="{% url 'articles-pl' %}">Zobacz wszystkie artykuły</a>
+					</div>
+				<div class="newsletter-post">
+					<div class="break-line"></div>
+					<h2 class="newsletter-post__header">Chcesz więcej materiałów?</h2>
+					<p class="newsletter-post__body">Bądz na bierząco. Dołącz do naszego newslettera by dostawać dawkę informacji ze świata cyberbezpieczeństwa prosto na swoją pocztę.</p>
+					<form class="newsletter-post__form" action="https://formspree.io/trenerindywidualnyonline@gmail.com" method="POST">
+						<input class="newsletter-post-input" type="text" id="email_newsletter" name="email_newsletter" placeholder="E-mail" required>
+						<input class="newsletter-post__form-button" type="submit" value="Subskrybuj">
+					</form>
+				</div>
+			</div>
+			<div class="simple-add-box">
+				<p>Jeśli potrzebujesz pomocy, twoja strona została zainfekowana, chcesz dokonać audytu bezpieczeństwa, czy poprostu masz jakieś pytania - <a class="text-link" href="mailto:tyrantsthem@gmail.com">napisz do nas</a>. Postaramy się pomóc.</p>
+			</div>
+		</div>
+		<a class="corrector-button" href="#corrector-overlay-on">Zgłoś błąd w tekście</a>
+		<div class="corrector-overlay" id="corrector-overlay-on">
+			<form class="corrector-form" action="https://formspree.io/tyrantsthem@gmail.com" method="POST">
+			<input name="mistake" placeholder="Opisz błąd" type="textarea" autofocus >
+			<input type="hidden" name="page" value="{{ post.title }}">
+			<input class="button-article-newsletter" type="submit" value="Wyślij">
+			</form>
+			<a class="corrector-close" href="#">&times;</a>
+		</div>
+	</div>
+
+	{% include 'includes/footer-02.html' %}
+	<div id="bar"></div>
+<!-- 	<div class="policy-alert-container">
+		<div class="policy-alert">
+			<div class="p">Używając serwisu zgadzasz się na <a href="#">Politykę Prywatności</a></div>
+			<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M 0 0 L 8 8" fill="transparent" stroke-width="1.5" stroke="hsl(0, 0%, 0%)"></path><path d="M 0 0 L 8 8" transform="rotate(-90 4 4)" fill="transparent" stroke-width="1.5" stroke="hsl(0, 0%, 0%)"></path></svg>
+		</div>
+	</div> -->
+</div>
+
+
+</body>
+</html>
+
+
+
+<script>
+	function getDocHeight() {
+	    var D = document;
+	    return Math.max(
+	        D.body.scrollHeight, D.documentElement.scrollHeight,
+	        D.body.offsetHeight, D.documentElement.offsetHeight,
+	        D.body.clientHeight, D.documentElement.clientHeight
+	    )
+	}
+
+	var winheight, docheight, trackLength, throttlescroll
+	var bar = document.getElementById("bar")
+
+	function getmeasurements(){
+	    winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
+	    docheight = getDocHeight()
+	    trackLength = docheight - winheight
+	}
+	 
+	function amountscrolled(){
+	    var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+	    var pctScrolled = Math.floor(scrollTop/trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)	    
+	    bar.style.width = pctScrolled + "%";
+	}
+	 
+	getmeasurements()
+	 
+	window.addEventListener("resize", function(){
+	    getmeasurements()
+	}, false)
+	 
+	window.addEventListener("scroll", function(){
+	    clearTimeout(throttlescroll)
+	        throttlescroll = setTimeout(function(){ // throttle code inside scroll to once every 50 milliseconds
+	        amountscrolled()
+	    }, 200)
+	}, false)
+</script>
+
+

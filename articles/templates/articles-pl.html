@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang='pl'>
+
+<head>
+	<title>TyrantsThem - Artykuły | cyberbezpieceństwo, analiza malware, wirusy, bugi, pentesting, włamania, wycieki danych.</title>
+	<meta name="description" content="Artykuły na temat cyberbezpieczeństwa, malware, wirusów, trojanów">
+	{% include 'includes/head-pl.html' %}
+</head>
+
+<body>
+<div class="wrapper wrapper--sub">
+	<header class="top top--articles">
+		<div class="top__menu-container">
+			<a class="top__logo" href="{% url 'home-pl' %}">
+				<p class="logo-text">TyrantsThem</p>
+			</a>
+			{% include 'includes/menu-pl.html' %}
+		</div>
+
+
+	</header>
+	<div class="content">
+		<div class="article-section-header">
+			<div class="article-section-header-container">
+				<h1>Artykuły</h1>
+				<h2>Twoje źródło wiedzy - cyberbezpieceństwo, analiza malware, wirusy, bugi, pentesting, włamania, wycieki danych.</h2>
+			</div>
+		</div>
+		<div class="article-container">
+			{% for post in posts %}
+			<div class="article-posts">				
+					<div class="article-post-data">
+						{% if render_date %}
+						<div class="article-post-date">{{ post.publish|date:"d.m.Y" }}</div>
+						{% else %}
+						<style type="text/css">
+							.post__info__social {
+								transform: translateY(-20px);
+							}
+						</style>
+						{% endif %}
+						<div class="article-post-data-social">{% include 'includes/social.html' %}</div>
+						<div class="article-post-data-line"></div>
+					</div>
+					<div class="article-post-container">
+						<a class="article-post-title" href="{{ post.get_absolute_url }}"><h2 class="title-link articles-post-title">{{ post.title }}</h2></a>
+						{% if post.image %}<img class="article-post-image" src="{{ post.image.url }}" alt="">{% endif %}
+						<p class="article-post-description">{{ post.description }}</p>
+					</div>
+							
+			</div>
+			<div class="break-line break-line--articles"></div>
+			{% endfor %}	
+			{% include 'includes/pagination.html' %}
+		</div>
+	</div>
+	{% include 'includes/footer-02.html' %}
+</div>
+</body>

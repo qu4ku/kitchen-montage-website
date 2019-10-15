@@ -1,0 +1,12 @@
+db.sqlite3
+*.pyc
+__pycache__/
+arch_db.sqlite3
+.DS_Store
+settings.py
+local.py
+**/.DS_Store
+htmlcov/
+.coverage
+.DS_Store
+media/

@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+
+	<title>Artykuły | TyrantsThem - cyberbezpieczeństwo</title>
+	<meta name="description" content="Artykuły na temat cyberbezpieczeństwa, malware, wirusów, trojanów">
+	{% include 'includes/head-pl.html' %}
+
+</head>
+
+
+<body>
+
+<div class="wrapper wrapper--sub">
+	
+	<header class="top top--art">
+		
+		<div class="top__menu-container">
+
+			<a class="top__logo" href="{% url 'home-pl' %}">
+				<p class="logo-text">TyrantsThem</p>
+			</a>
+			{% include 'includes/menu-pl.html' %}
+			
+		</div>
+		
+	</header>
+
+	<div class="content">
+		<div class="article-container">
+			<div class="article-newsletter-container">
+				<form class="article-newsletter" action="https://formspree.io/tyrantsthem@gmail.com" method="POST">
+					<p class="article-newsletter-body">Zapisz się do Newslettera - bądź na bierząco.</p>
+					<input type="text" id="email_newsletter" name="email_newsletter" placeholder="E-mail" required>
+					<input class="button-article-newsletter" type="submit" value="Subskrybuj">
+				</form>
+			</div>
+			<h1 class="article-header">Artykuły</h1>
+			<div class="article-posts">
+				{% for post in posts %}
+					<div class="article-post-data">
+						<div class="article-post-date">{{ post.publish|date:"d.m.Y" }}</div>
+						<div class="article-post-data-social">{% include 'includes/social.html' %}</div>
+						<div class="article-post-data-line"></div>
+					</div>
+					<div class="article-post-container">
+						<a class="article-post-title" href="{{ post.get_absolute_url }}"><h2 class="title-link articles-post-title">{{ post.title }}</h2></a>
+						{% if post.image %}<img class="article-post-image" src="{{ post.image.url }}" alt="">{% endif %}
+						<p class="article-post-description">{{ post.description }}</p>
+					</div>
+				{% endfor %}				
+			</div>
+			{% include 'includes/pagination.html' %}
+		</div>
+	</div>
+</div>
+
+{% include 'includes/footer-02.html' %}
+
+
+</body>
