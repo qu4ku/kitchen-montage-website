@@ -26,8 +26,8 @@ DATABASES = {
 }
 
 
-MEDIA_ROOT = '/var/www/tyrantsthem/media/'
-STATIC_ROOT = '/var/www/tyrantsthem/static/'
+MEDIA_ROOT = '/var/www/faktorie/media/'
+STATIC_ROOT = '/var/www/faktorie/static/'
 
 IS_MVP = True
 
