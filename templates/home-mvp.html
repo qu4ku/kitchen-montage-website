@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -5,7 +7,7 @@
 <head>
 
 	<title>Faktorie - Montaż kuchni Mazowieckie, Warszawa</title>
-	<meta name="keywords" content="montaż kuchni, montaż, ">
+	<meta name="keywords" content="montaż kuchni, montaż kuchni warszawa, montaż kuchni mazowieckie">
 	<meta name="description" content="Montaż kuchni w województwie mazowieckim, Warszawa">
 
 </head>
@@ -13,11 +15,19 @@
 
 <body>
 
-<div>
-	<div>Faktorie</div>
-	<h1>Montaż kuchni Warszawa i okolice.</h1>	
-	<p>Montujemy kuchnie w województwie mazowieckim.</p>
-	<a href="mailto:info@deltabaryon.com">kontakt</a>
+<div class="wrapper">
+	<header class="top">
+		<a href="{% url 'home' %}" class="top__logo">
+			<img src="{% static 'img/faktorie-logo.png' %}" alt="Faktorie Logo">
+		</a>
+	</header>
+</div>
+
+<div class="top__container">
+	<h1 class="top__container-slogain-main">Profesjonalny montaż mebli kuchennych w Warszawie i okolicach. </h1>
+	<h2 class="top__container-slogan-body">
+Jesteśmy profesjonalnym zespołem zajmującym się montażem mebli kuchennych dla klientów, którym zależy na wysokiej jakości usług.</h2>
+	<a href="mailto:info@deltabaryon.com?subject=Montaż kuchni">Kontakt</a>
 </div>
 
 </body>
