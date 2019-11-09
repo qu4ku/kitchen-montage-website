@@ -1,0 +1,176 @@
+:root {
+	--text-light: #8b8b8b;
+	--highlight: #ffd200;
+}
+
+/*------------------ RESET CSS ------------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, body, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
+
+/*------------------ CSS ------------------*/
+
+
+@font-face {
+	font-family: hk;
+	src: url('../fonts/HKGrotesk-Regular.woff');
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: hk;
+	src: url('../fonts/HKGrotesk-Bold.woff');
+	font-weight: bold;
+}
+
+body {
+	font-family: hk, "Lucida Grande", "Helvetica", sans-serif;
+	/*font-weight: bold;*/
+	line-height: 1.8;
+	font-size: 16px;
+	color: var(--text-light);
+	background: var(--bg-light);
+}
+
+a {
+	text-decoration: none;
+}
+
+svg, svg * {
+  pointer-events: none;
+}
+
+
+.wrapper {
+	min-height: 100vh;
+	width: 100vw;
+}
+
+.top__container {
+	display: grid;
+	grid-template-areas:
+	"nav"
+	"content"
+	"footer";
+	grid-template-rows: 100px auto 50px;
+
+	background: grey;
+	min-height: 100vh;
+	width: 100vw;
+}
+
+.top__container-nav {
+	grid-area: nav;
+	/*height: 100px;*/
+	background: white;
+}
+
+.top__logo img {
+	margin: 25px 0 0 25px;
+	/*margin-top: 25px;*/
+}
+
+.top__container-content {
+	background: black;
+	background-image: url('../img/bg-mvp.jpg');
+	background-size: cover;
+}
+
+.top__container-content-text {
+	margin: 50px;
+	min-height: 60%;
+	min-width: 60%;
+}
+
+.top__container-slogan-main {
+	font-weight: bold;
+	font-size: 60px;
+	line-height: 68px;
+	color: white;
+	margin-bottom: 40px;
+
+}
+
+.top__container-slogan-body {
+	font-size: 28px;
+	line-height: 32px;
+	color: white;
+	margin-bottom: 40px;
+}
+
+.top__container-footer {
+	background: white;
+}
+
+.top__container-footer p {
+	/*margin: 5px 0 25px 0;*/
+	padding: 10px 0 10px 25px;
+}
+
+
+.button-main {
+	background-color: red;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 20px 20px;
+	border-radius: 40px;
+	display: inline-block;
+	border: none;
+
+	transition-duration: 0.5s;
+}
+
+.button-main:hover {
+	background-color: var(--highlight);
+	color: black;
+	transition-duration: 0.2s;
+}
+
+
