@@ -69,6 +69,10 @@ appearance: none;
 	font-weight: bold;
 }
 
+/*html, body {
+	width: 100%;
+}*/
+
 body {
 	font-family: hk, "Lucida Grande", "Helvetica", sans-serif;
 	/*font-weight: bold;*/
@@ -89,7 +93,7 @@ svg, svg * {
 
 .wrapper {
 	min-height: 100vh;
-	width: 100vw;
+	max-width: 100vw;
 }
 
 .top__container {
